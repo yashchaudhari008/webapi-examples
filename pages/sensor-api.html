@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sensor API</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <link rel="stylesheet" href="../main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper green darken-2">
+                <a class="brand-logo center truncate">Sensor API</a>
+            </div>
+        </nav>
+        <div id="main-content" class="center flow-text">
+            <!-- <div id="support-status"></div> -->
+            
+            <div id="api-data" class="card">
+                <p class="green card-title">Accelerometer</p>
+                    <div id="acceleration-x"></div>
+                    <div id="acceleration-y"></div>
+                    <div id="acceleration-z"></div>
+                <br>
+
+                <script>
+                    let acl = new Accelerometer({frequency: 60});
+                    acl.addEventListener('reading', () => {
+                        document.getElementById("acceleration-x").innerHTML = "<b>x-axis: </b>" + acl.x.toFixed(4);
+                        document.getElementById("acceleration-y").innerHTML = "<b>y-axis: </b>" + acl.y.toFixed(4);
+                        document.getElementById("acceleration-z").innerHTML = "<b>z-axis: </b>" + acl.z.toFixed(4);
+                    });
+                    acl.start();
+                </script>
+            </div>
+            
+        </div>
+        
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large green darken-2" href="../index.html">
+              <i class="material-icons" style="font-size: 30px;">navigate_before</i>
+            </a>
+        </div>
+    </body>
+</html>
