@@ -1,0 +1,20 @@
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    background-color: whitesmoke;
+}
+#main-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+button {
+    margin: 2px;
+}

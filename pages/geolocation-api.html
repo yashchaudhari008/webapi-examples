@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Geolocation API</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <link rel="stylesheet" href="../main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper yellow darken-2">
+                <a class="brand-logo center truncate">Geolocation API</a>
+            </div>
+        </nav>
+        <div id="main-content" class="container center flow-text">
+            <div id="support-status"></div>
+
+            <button id="start-button" class="btn black" onclick="start(); this.remove();"> Start Geolocation</button>
+            <button id="stop-button" class="btn black hide" onclick="stop(); this.remove();"> Stop Geolocation</button>
+            
+            <div id="api-data" class="card hide">
+                <p class="yellow card-title"> GeolocationPosition.cords </p>
+                    <div id="latitude"></div>
+                    <div id="longitude"></div>
+                    <div id="altitude"></div>
+                    <div id="accuracy"></div>
+                    <div id="altitudeAccuracy"></div>
+                    <div id="heading"></div>
+                    <div id="speed"></div>
+
+                <p class="yellow card-title"> GeolocationPosition.timestamp</p>
+                    <div id="timestamp"></div> 
+                <br>
+            </div>
+        </div>
+
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large yellow darken-2" href="../index.html">
+              <i class="material-icons" style="font-size: 30px;">navigate_before</i>
+            </a>
+        </div>
+
+        
+        <script>
+            let watchid;
+
+            //CHECK FOR API SUPPORT
+            if ("geolocation" in navigator){
+                document.getElementById("support-status").innerHTML = "Supported";
+            } else {
+                document.getElementById("support-status").innerHTML = "Not Supported";
+            }
+
+            function start(){
+
+                //SHOWING/HIDING UI LOGIC 
+                document.getElementById("stop-button").classList.toggle("hide");
+                document.getElementById("api-data").classList.toggle("hide");
+
+                //MAIN API LOGIC [START]
+                const geolocationOptions = {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 10000,
+                }
+                watchid = navigator.geolocation.watchPosition(success,failed,geolocationOptions);
+                console.log("Geolocation Started");
+                
+                function success(data){
+                    setData(data.coords, data.timestamp);
+                }
+                function failed(error){
+                    console.error(error.message);
+                    document.getElementById("support-status").innerHTML = "Supported - Permission Denied";
+                }
+                //MAIN API LOGIC [END]
+
+                //FUNCTION TO SHOW API DATA
+                function setData(coords ,timestamp){
+                    document.getElementById("latitude").innerHTML = "<b>Latitude: </b>" +coords.latitude;
+                    document.getElementById("longitude").innerHTML = "<b>Longitude: </b>" +coords.longitude;
+                    document.getElementById("altitude").innerHTML = "<b>Altitude: </b>" +coords.altitude;
+                    document.getElementById("accuracy").innerHTML = "<b>Accuracy: </b>" +coords.accuracy;
+                    document.getElementById("altitudeAccuracy").innerHTML = "<b>Altitude Accuracy: </b>" +coords.altitudeAccuracy;
+                    document.getElementById("heading").innerHTML = "<b>Heading: </b>" +coords.heading;
+                    document.getElementById("speed").innerHTML = "<b>Speed: </b>" +coords.speed;
+
+                    document.getElementById("timestamp").innerHTML = "<b>Timestamp: </b>" +timestamp;
+                }
+            }
+
+            function stop(){
+                    navigator.geolocation.clearWatch(watchid);
+                    console.log("Geolocation Stopped");
+            }
+        </script>
+
+    </body>
+</html>
