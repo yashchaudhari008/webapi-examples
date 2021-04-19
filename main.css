@@ -4,17 +4,22 @@ html,body{
     padding: 0;
 }
 body {
-    display: flex;
-    flex-direction: column;
     font-size: large;
     background-color: whitesmoke;
 }
 #main-content {
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    align-items: center;
 }
-button {
+#main-content button {
     margin: 2px;
+}
+.card {
+    padding: 10px;
+}
+.card-title {
+    padding-inline: 10px;
 }
