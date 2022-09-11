@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>API Name</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <link rel="stylesheet" href="../main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper blue darken-2">
+                <a class="brand-logo center truncate"> API Name </a>
+            </div>
+        </nav>
+        <div id="main-content" class="center flow-text">
+            <div id="support-status"></div>
+
+            <!-- <button id="stop-button" class="btn black" onclick="stop(); this.remove();"> Stop</button> -->
+            
+            <div id="api-data" class="card">
+                <p class="blue card-title"> api.method </p>
+                    <div id="api-data-parameter-name"></div>
+                <!--  -->
+                <br>
+
+                <script>
+                    if ("" in navigator){
+                        document.getElementById("support-status").innerHTML = "Supported";
+
+                        //
+                    } else {
+                        document.getElementById("support-status").innerHTML = "Not Supported";
+                    }
+                </script>
+            </div>
+            
+        </div>
+        
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large blue darken-2" href="../index.html">
+              <i class="material-icons" style="font-size: 30px;">navigate_before</i>
+            </a>
+        </div>
+    </body>
+</html>
